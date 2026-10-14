@@ -6,13 +6,9 @@ import (
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
-)
 
-type Product struct {
-	gorm.Model
-	Code  string
-	Price uint
-}
+	"github.com/x1xderrick/gorest/internal/models"
+)
 
 func main() {
 	fmt.Println("Connecting to SQLite3 Database...")
@@ -25,13 +21,13 @@ func main() {
 	fmt.Println("Successfully connected.")
 
 	// Migrate the schema
-	db.AutoMigrate(&Product{})
+	db.AutoMigrate(&models.Product{})
 
 	// Create
-	db.Create(&Product{Code: "D42", Price: 100})
+	db.Create(&models.Product{Code: "D42", Price: 100})
 
 	// Read
-	var product Product
+	var product models.Product
 	db.First(&product, 1) // find product with integer primary key
 	//db.First(&product, "code = ?", "D42") // find product with code D42
 
