@@ -45,6 +45,8 @@ func main() {
 	router.Use(middleware.Recoverer)
 
 	router.Get("/", controllers.Index)
+	router.Post("/users", controllers.CreateUsers) // Create new user
+	router.Get("/users", controllers.RetrieveUsers) // Retrieve users
 
 	b, err := json.Marshal(product)
 	fmt.Println(string(b))
